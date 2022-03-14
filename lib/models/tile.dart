@@ -1,20 +1,32 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:rubrikrace/models/position.dart';
 
 class Tile extends Equatable {
   final int value;
-  final Position position;
+  Position position;
   final Position correctPosition;
   final bool? isCorrect;
   final color;
 
-  const Tile(
+  Tile(
       {required this.value,
       required this.position,
       required this.correctPosition,
       this.isCorrect,
       this.color});
 
+  factory Tile.copy({required Tile tile, required Position position}) {
+    return Tile(
+      value: tile.value,
+      position: position,
+      correctPosition: tile.correctPosition,
+      isCorrect: tile.isCorrect,
+      color: tile.color,
+    );
+  }
+
+  Colors get getColor => this.color;
   Tile move(Position newPosition) {
     return Tile(
         value: value,

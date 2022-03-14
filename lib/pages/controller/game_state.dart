@@ -4,7 +4,6 @@ import 'package:rubrikrace/models/puzzle.dart';
 enum GameStatus {
   initial,
   playing,
-  paused,
   finished,
 }
 
