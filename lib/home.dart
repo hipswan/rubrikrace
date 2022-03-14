@@ -1,7 +1,14 @@
+import 'dart:io';
 import 'dart:math';
-
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:rubrikrace/pages/controller/game_controller.dart';
 import 'package:rubrikrace/pages/game_view.dart';
+import 'package:image/image.dart' as IMG;
+
+import 'pages/widgets/time_and_moves.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,249 +18,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  var animationController;
-  var animation;
-  var gridSize = 4;
-  var rotate_Y = 0.0;
-  var gameView = LabeledGlobalKey<GameViewState>('game-view');
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  // Future<Null> init() async {
+  //   final ByteData data = await rootBundle.load('images/lake.jpg');
+  //   image = await loadImage(new Uint8List.view(data.buffer));
+  // }
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        milliseconds: 700,
-      ),
-    );
-    animation = Tween<double>(
-      begin: 0,
-      end: pi,
-    ).animate(animationController)
-      ..addListener(() {
-        // print(animation.value);
-        setState(() {
-          rotate_Y = animation.value;
-        });
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          // animationController.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          // animationController.forward();
-        }
-      });
-    animationController.forward();
-  }
+  // void loadRubrikRace(String img) async {
+  //   final ByteData data = await rootBundle.load(img);
+  //   rubrikrace =
+  //       (await decodeImageFromList(Uint8List.view(data.buffer))) as IMG.Image?;
+  //   rubrikrace = IMG.copyResize(rubrikrace!, width: 50, height: 50);
+  // }
+
+  // void loadRubrikCube(String img) async {
+  //   final ByteData data = await rootBundle.load(img);
+
+  //   rubrikcube = await decodeImageFromList(Uint8List.view(data.buffer));
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 109, 111, 113),
-                Color.fromARGB(255, 95, 98, 98),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Stack(
-            children: [
-              Positioned.fromRect(
-                rect: Rect.fromLTWH(
-                  0,
-                  0,
-                  MediaQuery.of(context).size.width,
-                  80,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          animationController.forward();
-                        },
-                        child: Text('Start'),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          gameView.currentState!.doShuffle();
-                        },
-                        child: Text('Shuffle'),
-                      ),
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          gameView.currentState!.reset();
-                        },
-                        child: Text('Reset'),
-                      ),
-                    ),
-                    Expanded(
-                      child: DropdownButton<int>(
-                        value: 4,
-                        items: List.generate(3, (index) {
-                          var val = index + 4;
-                          return DropdownMenuItem<int>(
-                            child: Text('$val x $val'),
-                            value: val,
-                          );
-                        }),
-                        onChanged: (value) {
-                          gameView.currentState!.gridChange(value!);
-                          setState(() {
-                            gridSize = value;
-                          });
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Positioned.fill(
-                child: Center(
-                  child: ScaleTransition(
-                    scale: Tween<double>(
-                      begin: 1.4,
-                      end: 1.8,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animationController,
-                        curve: Curves.bounceOut,
-                        reverseCurve: Curves.bounceIn,
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 200.0,
-                          width: 200.0,
-                          child: GameView(key: gameView),
-                        ),
-                        Transform(
-                          transform: Matrix4.identity()
-                            ..setEntry(3, 2, 0.002)
-                            ..rotateX(rotate_Y),
-                          alignment: FractionalOffset.center,
-                          origin: const Offset(
-                            0,
-                            100,
-                          ),
-                          child: Stack(
-                            children: [
-                              Transform(
-                                transform: Matrix4.identity()
-                                  ..setEntry(2, 3, 0)
-                                  ..rotateY(2 * pi),
-                                child: Container(
-                                  height: 200.0,
-                                  width: 200.0,
-                                  child: CustomPaint(
-                                    painter: HolePainter(
-                                      color: Colors.blue,
-                                      gridSize: gridSize,
-                                    ),
-                                    child: Container(),
-                                  ),
-                                ),
-                              ),
-                              //  0 - pi to 1 - 0  -- > 1 - 6/pi * pi
-                              Opacity(
-                                opacity: 1 - (rotate_Y / pi),
-                                child: Container(
-                                  height: 200.0,
-                                  width: 200.0,
-                                  child: CustomPaint(
-                                    painter: HolePainter(
-                                      color: Colors.red,
-                                      gridSize: gridSize,
-                                    ),
-                                    child: Container(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 80,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      animationController.reverse();
-                    },
-                    child: Text('Done'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+        body: GameView(),
       ),
     );
-  }
-}
-
-class HolePainter extends CustomPainter {
-  final gridSize;
-  final Color color;
-  HolePainter({
-    this.color = Colors.black,
-    this.gridSize = 4,
-  });
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint();
-    paint.color = color;
-    canvas.drawPath(
-      Path.combine(
-        PathOperation.difference,
-        Path()
-          ..addRRect(
-            RRect.fromLTRBR(
-              0,
-              0,
-              200,
-              200,
-              const Radius.circular(
-                6,
-              ),
-            ),
-          ),
-        Path()
-          ..addRRect(
-            RRect.fromRectAndRadius(
-              Rect.fromCircle(
-                center: const Offset(100, 100),
-                radius: 200 / gridSize * ((gridSize - 2) / 2),
-              ),
-              const Radius.circular(4),
-            ),
-          )
-          ..close(),
-      ),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
   }
 }
