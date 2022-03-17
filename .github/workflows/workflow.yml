@@ -33,14 +33,14 @@ jobs:
         channel: 'stable'
     - run: flutter build web
     
-  build_rubrikrace_windows:
-    name: Build Rubrik Windows
-    uses: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: subosito/flutter-action@v2
-      with:
-        channel: 'beta'
-    - run: flutter config --enable-windows-desktop
-    - run: flutter build windows
+  # build_rubrikrace_windows:
+  #   name: Build Rubrik Windows
+  #   uses: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: subosito/flutter-action@v2
+  #     with:
+  #       channel: 'beta'
+  #   - run: flutter config --enable-windows-desktop
+  #   - run: flutter build windows
   
