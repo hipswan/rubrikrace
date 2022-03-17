@@ -18,24 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  // Future<Null> init() async {
-  //   final ByteData data = await rootBundle.load('images/lake.jpg');
-  //   image = await loadImage(new Uint8List.view(data.buffer));
-  // }
-
-  // void loadRubrikRace(String img) async {
-  //   final ByteData data = await rootBundle.load(img);
-  //   rubrikrace =
-  //       (await decodeImageFromList(Uint8List.view(data.buffer))) as IMG.Image?;
-  //   rubrikrace = IMG.copyResize(rubrikrace!, width: 50, height: 50);
-  // }
-
-  // void loadRubrikCube(String img) async {
-  //   final ByteData data = await rootBundle.load(img);
-
-  //   rubrikcube = await decodeImageFromList(Uint8List.view(data.buffer));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
