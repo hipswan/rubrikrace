@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rubrikrace/home.dart';
-import 'package:rubrikrace/pages/game_view.dart';
 
 void main() {
   runApp(const MyApp());
