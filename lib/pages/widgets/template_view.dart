@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rubrikrace/pages/widgets/puzzle_tile.dart';
 import 'dart:math';
-import '../../models/tile.dart';
 import '../controller/game_controller.dart';
 
 class TemplateView extends StatelessWidget {

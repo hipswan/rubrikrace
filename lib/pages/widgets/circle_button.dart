@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
@@ -14,7 +16,7 @@ class CircleButton extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         shape: MaterialStateProperty.all(
-          CircleBorder(),
+          const CircleBorder(),
         ),
         backgroundColor: MaterialStateProperty.all(
           Colors.black54,

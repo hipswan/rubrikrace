@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
+
 import 'dart:async';
 import 'dart:math';
 
@@ -11,11 +13,10 @@ import 'package:rubrikrace/pages/widgets/template_view.dart';
 import 'package:rubrikrace/utils/hole_widget.dart';
 import 'package:rubrikrace/utils/time_parser.dart';
 
-import '../utils/circle_button.dart';
 import 'widgets/time_and_moves.dart';
 
 class GameView extends StatefulWidget {
-  GameView({Key? key}) : super(key: key);
+  const GameView({Key? key}) : super(key: key);
 
   @override
   State<GameView> createState() => GameViewState();
@@ -45,7 +46,6 @@ class GameViewState extends State<GameView>
   var rubrikcube;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // loadRubrikRace('assets/rubrikrace.png');
 

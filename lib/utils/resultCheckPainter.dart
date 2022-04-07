@@ -1,12 +1,13 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, file_names
+
 import 'package:flutter/material.dart';
 
 class ResultCheckPainter extends CustomPainter {
-  var gridSize;
-  var resultColor;
+  final gridSize;
+  final resultColor;
   ResultCheckPainter({this.gridSize, this.resultColor});
   @override
   void paint(Canvas canvas, Size size) {
-    // TODO: implement paint
     var outlineBrush = Paint()
       ..color = resultColor
       ..style = PaintingStyle.stroke
@@ -31,7 +32,6 @@ class ResultCheckPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(ResultCheckPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return gridSize != oldDelegate.gridSize ||
         resultColor != oldDelegate.resultColor;
   }

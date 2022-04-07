@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:rubrikrace/pages/controller/game_controller.dart';
@@ -70,7 +71,6 @@ class ResultCheckPainter extends CustomPainter {
   ResultCheckPainter({this.gridSize, this.resultColor});
   @override
   void paint(Canvas canvas, Size size) {
-    // TODO: implement paint
     var outlineBrush = Paint()
       ..color = resultColor
       ..style = PaintingStyle.stroke
@@ -95,7 +95,6 @@ class ResultCheckPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

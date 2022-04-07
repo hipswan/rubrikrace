@@ -25,7 +25,7 @@ class DoneButton extends StatelessWidget {
             Colors.black54,
           ),
         ),
-        child: Text('Done'),
+        child: const Text('Done'),
       ),
     );
   }

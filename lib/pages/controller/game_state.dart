@@ -11,6 +11,7 @@ class GameState extends Equatable {
   final int crossAxisCount;
   final Puzzle puzzle;
   final bool solved;
+  // ignore: prefer_typing_uninitialized_variables
   final moves;
   final GameStatus status;
 

@@ -2,11 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:rubrikrace/models/position.dart';
 
+// ignore: must_be_immutable
 class Tile extends Equatable {
   final int value;
   Position position;
   final Position correctPosition;
   final bool? isCorrect;
+  // ignore: prefer_typing_uninitialized_variables
   final color;
 
   Tile(
@@ -26,7 +28,7 @@ class Tile extends Equatable {
     );
   }
 
-  Colors get getColor => this.color;
+  Colors get getColor => color;
   Tile move(Position newPosition) {
     return Tile(
         value: value,
@@ -36,6 +38,7 @@ class Tile extends Equatable {
         color: color);
   }
 
+  @override
   List<Object?> get props => [
         position,
         correctPosition,
