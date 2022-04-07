@@ -23,7 +23,7 @@ class TimeAndMoves extends StatelessWidget {
                 child: Container(
                   width: 125,
                   height: 45,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.black54,
                     borderRadius: BorderRadius.circular(
@@ -37,12 +37,12 @@ class TimeAndMoves extends StatelessWidget {
                   child: Row(
                     children: [
                       icon!,
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
                         parseTime(time),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                         ),
@@ -65,7 +65,7 @@ class TimeAndMoves extends StatelessWidget {
                 child: Container(
                   width: 125,
                   height: 45,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.black54,
                     borderRadius: BorderRadius.circular(
@@ -79,7 +79,7 @@ class TimeAndMoves extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "Moves: $moves",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
